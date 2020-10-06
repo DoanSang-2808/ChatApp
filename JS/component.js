@@ -47,7 +47,7 @@ conponent.loginPage = ` <div class="login-container"  >
          </div>
          <div class="input-wrapper">
             <input type="password" placeholder="Password..." name="Password">
-            <div class="err" id="Password-error"></div>
+            <div class="err" id="password-error"></div>
          </div>
          <div class="login-action">
              <div> Already have an account?<span id="login-register" class="cursor-pointer">Register</span></div>

@@ -13,13 +13,13 @@ controller.register = ({ firstName, lastName, email, password, cfPassword }) => 
     if (email === '') {
         view.setErrorMassage('email-error', "Please input email")
     }
-    else  {
+    else {
         view.setErrorMassage('email-error', "")
     }
     if (password === '') {
         view.setErrorMassage('Password-error', "Please input password")
     }
-    else  {
+    else {
         view.setErrorMassage('Password-error', "")
     }
     if (cfPassword === '') {
@@ -28,12 +28,28 @@ controller.register = ({ firstName, lastName, email, password, cfPassword }) => 
     else if (password !== cfPassword) {
         view.setErrorMassage('confirm-password-error', "Please did't match")
     }
-    else{
+    else {
         view.setErrorMassage('confirm-password-error', "")
     }
     if (firstName != '' && lastName !== '' && email !== '' && password !== '' && password !== '' && cfPassword !== '' && cfPassword === password) {
         const dataRegister = { firstName, lastName, email, password, cfPassword }
         model.register(dataRegister)
 
+    }
+
+}
+controller.login = ({ email, password }) => {
+    if (email === '') {
+        view.setErrorMassage('email-error', 'Please input email');
+    } else {
+        view.setErrorMassage('email-error', '')
+    } if (password === '') {
+        view.setErrorMassage('password-error', 'Please input password');
+    } else {
+        view.setErrorMassage('password-error', '');
+    }
+    if (email !== '' && password !== '') {
+        const dataLogin = { email, password }
+        model.login(dataLogin);
     }
 }
