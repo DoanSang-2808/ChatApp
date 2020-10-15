@@ -1,4 +1,5 @@
 const model = {}
+model.currentUser ={}
 model.register = async ({ firstName, lastName, email, password }) => {
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -20,8 +21,13 @@ model.register = async ({ firstName, lastName, email, password }) => {
 }
 model.login = async ({ email, password }) => {
     try {
-        await firebase.auth().signInWithEmailAndPassword(email, password)
-        alert('Successful login!!!')
+        const res = await firebase.auth().signInWithEmailAndPassword(email, password)
+    // console.log(response)
+    // if (response.user.emailVerified) {
+    //   view.setActiveScreen('chatMain')
+    // } else {
+    //   alert('Please verify email')
+    // }
     } catch (err) {
         alert(err.message)
     }

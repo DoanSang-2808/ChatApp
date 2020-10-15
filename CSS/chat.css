@@ -1,0 +1,81 @@
+.header{
+    text-align: center;
+    color: #ffff;
+    background-color: #037BFE;
+    height: 64px;
+    line-height: 64px;
+    /* display: flex; dùng khi thứ cần căn là các thẻ div
+    justify-content: center;
+    align-items: center; */
+    font-size: 24px;
+}
+.conversation-title{
+    text-align: center;
+    height: 64px;
+    line-height: 64px;
+    border-bottom: 2px solid  #bdbdbd;
+    font-size: 24px;
+    width: 100vw;
+    /* position: relative; */
+}
+.chat-container .conversation-detail{
+    display: flex;
+    flex-direction: column;
+
+}
+.chat-container .list-message{
+    flex-grow: 1;
+}
+#send-message-form input{
+    border : none;
+    width: 100%;
+    outline: 0;
+}
+#send-message-form{
+    padding: 22px 15px;
+    position: relative;
+    border: 2px solid #dbdbdb
+}
+#send-message-form button{
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    
+}
+/* .conversation-detail #send-message-form{
+    position: absolute;
+    bottom : 0;
+    width: 100%;
+
+} */
+.chat-container{
+    height: 100vh;
+}
+.chat-container .main{
+    height: calc(100vh - 64px);
+}
+.chat-container .conversation-detail{
+    height: 100%;
+}
+.list-message .message .message-content{
+    background-color: #dbdbdb;
+    padding:10px;
+    border-radius: 8px;
+    max-width: 45%;
+    width: max-content;
+}
+.list-message .message.message-mine{
+    display: flex;
+    justify-content: flex-end;
+}
+.list-message{
+    padding : 10px;
+}
+.list-message .message.message-mine .message-content{
+    background-color: #037BFE;
+    color: #ffff;
+}
+.list-message .message .name{
+    font-size: 13px;
+}
+

@@ -11,7 +11,23 @@ window.onload = () => { // gan cho su kien window.onload 1 function
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     console.log(firebase.app().name);
-    view.setActiveScreen('registerPage');
+    firebase.auth().onAuthStateChanged((res) => {
+        if(res) {
+            if(res.emailVerified){
+                model.currentUser = {
+                    displayName : res.displayName,
+                    email : res.email,
+                }
+                console.log(model.currentUser)
+                view.setActiveScreen('chatMain');
+            }else {
+                view.setActiveScreen('loginPage')
+                alert('Please verify your email')
+            }
+        }else {
+            view.setActiveScreen('registerPage')
+        }
+    })
     //document.getElementById('app').innerHTML = conponent.welComPage
     //document.getElementById('redirect-login').onclick = () => {
             // view.setActiveScreen('loginPage');
