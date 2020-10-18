@@ -62,13 +62,7 @@ conponent.chatMain = `<div class="chat-container">
     <div class="conversation-detail">
         <div class="conversation-title"> First conversation</div>
         <div class="list-message">
-            <div class="message message-mine">
-                <div class="message-content">Hello</div>
-            </div>
-            <div class="message message-other">
-                <div class="name">Nguyen Y Van</div>
-                <div class="message-content">Hello World</div>
-            </div>
+            
         </div>
         <form id="send-message-form">
             <input type="text" name="message" id="" placeholder="type a message">

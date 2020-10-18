@@ -28,29 +28,49 @@ window.onload = () => { // gan cho su kien window.onload 1 function
             view.setActiveScreen('registerPage')
         }
     })
-    //document.getElementById('app').innerHTML = conponent.welComPage
-    //document.getElementById('redirect-login').onclick = () => {
-            // view.setActiveScreen('loginPage');
-            // document.getElementById('login-register').onclick = () => {
-            //     view.setActiveScreen('registerPage');
-            //     document.getElementById('redirect-login').onclick = () => {
-            //         view.setActiveScreen('loginPage');
-            //     }
-            // }
-        //Login();
-    //}
+    //firestoreQuerise();
 }
-// const Login = () => {
-//     view.setActiveScreen('loginPage')
-//     document.getElementById('login-register').onclick = () => {
-//     Register();
-//     }
-// }
-// const Register = () => {
-//     view.setActiveScreen('registerPage')
-//     document.getElementById('redirect-login').onclick = () => {
-//     Login()
-//     }
-// }
 
 
+// firestoreQuerise =  async() => {
+//     //get one 
+//     const respon = await firebase.firestore().collection('users').doc('i0rRXoi6b1NyYDEwNAvA').get();
+//     const user = getDataFromDoc(respon)
+//     console.log(user)
+//     //get many
+//     const respon = await firebase.firestore().collection('users').where('phone','array-contains', '03245').get()
+//     const listUser = getDataFromDocs(respon.docs)
+//     console.log(listUser)
+//     //add
+//     const dataToAdd = {
+//         name:"Nguyen van A",
+//         age  : 10
+//     }
+//     firebase.firestore().collection("users").add(dataToAdd);
+    
+//     //update
+//     const dataToUpdate = {
+//         name: 'xyxzzz',
+//         address : "hai p",
+//         address : firebase.firestore.FieldValue.delete(),
+//         phone : firebase.firestore.FieldValue.arrayUnion('1234567')
+//     }
+//     const docID = "aBkX6kNhmE1Boxs71to6"
+//     firebase.firestore().collection('users').doc(docID).update(dataToUpdate)
+//     //delete
+//     const docID = "aBkX6kNhmE1Boxs71to6"
+//     firebase.firestore().collection('Users').doc('docId').delete;
+// }
+// getDataFromDoc = (res) => {
+//     const data = res.data()
+//     data.id = res.id
+//     return data
+// }
+// getDataFromDocs = (docs) => {
+//     // const arr = []
+//     // for( const oneDoc of docs){
+//     //     arr.push(getDataFromDoc(oneDoc))
+//     // }
+//     //return arr
+//     return docs.map(getDataFromDoc)
+//}

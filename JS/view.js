@@ -41,7 +41,7 @@ view.setActiveScreen = (screenName) => {
                 controller.login(dataLogin);
             })
             break;
-        case 'chatMain' :
+        case 'chatMain':
             document.getElementById('app').innerHTML = conponent.chatMain;
             const sendMessageForm = document.getElementById('send-message-form')
             console.log(sendMessageForm)
@@ -49,17 +49,20 @@ view.setActiveScreen = (screenName) => {
                 event.preventDefault();
                 const message = sendMessageForm.message.value;
                 console.log(message)
-                const messageSend= {
-                    owner:model.currentUser.email,
-                    content : message,
+                const messageSend = {
+                    owner: model.currentUser.email,
+                    content: message,
                 }
                 const messageReply = {
                     onwer: 'Nguyen Y Van',
-                    content : message,
+                    content: message,
                 }
-                view.addMessage(messageSend);
-                view.addMessage(messageReply);
-                sendMessageForm.message.value = ""
+                if (message.trim !== "") {
+                    view.addMessage(messageSend);
+                    model.addMessageToFirebase(messageSend)
+                    view.addMessage(messageReply);
+                    sendMessageForm.message.value = "";
+                }
             })
             break;
     }
@@ -68,15 +71,15 @@ view.setActiveScreen = (screenName) => {
 view.setErrorMassage = (elementId, massage) => {
     document.getElementById(elementId).innerText = massage
 }
-view.addMessage = (message) =>{
+view.addMessage = (message) => {
     const messageWrapper = document.createElement('div')
     messageWrapper.classList.add('message');
-    if(model.currentUser.email == message.owner){
+    if (model.currentUser.email == message.owner) {
         messageWrapper.classList.add('message-mine')
-        messageWrapper.innerHTML= `<div class='message-content'>${message.content}</div>`
-    }else{
-       messageWrapper.classList.add('message-other')
-       messageWrapper.innerHTML = `<div class='name'> Nguyen Y Van</div>
+        messageWrapper.innerHTML = `<div class='message-content'>${message.content}</div>`
+    } else {
+        messageWrapper.classList.add('message-other')
+        messageWrapper.innerHTML = `<div class='name'> Nguyen Y Van</div>
                                    <div class='message-content'>${message.content}</div>`
 
 

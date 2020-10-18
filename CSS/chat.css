@@ -70,6 +70,7 @@
 }
 .list-message{
     padding : 10px;
+    overflow: auto;
 }
 .list-message .message.message-mine .message-content{
     background-color: #037BFE;
