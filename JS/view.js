@@ -52,18 +52,23 @@ view.setActiveScreen = (screenName) => {
                 const messageSend = {
                     owner: model.currentUser.email,
                     content: message,
+                    createAt : new Date().toISOString()
                 }
-                const messageReply = {
-                    onwer: 'Nguyen Y Van',
-                    content: message,
-                }
+                // const messageReply = {
+                //     onwer: 'Nguyen Y Van',
+                //     content: message,
+                // }
                 if (message.trim !== "") {
-                    view.addMessage(messageSend);
+                    //view.addMessage(messageSend);
                     model.addMessageToFirebase(messageSend)
-                    view.addMessage(messageReply);
+                    //view.addMessage(messageReply);
                     sendMessageForm.message.value = "";
                 }
             })
+            //lay các cuoc hoi thoai ve
+            model.getConversations()
+            //lang nghe thay doi cua cac cuoc hoi thoai
+            model.ListenConversationChange()
             break;
     }
 }
@@ -76,7 +81,10 @@ view.addMessage = (message) => {
     messageWrapper.classList.add('message');
     if (model.currentUser.email == message.owner) {
         messageWrapper.classList.add('message-mine')
-        messageWrapper.innerHTML = `<div class='message-content'>${message.content}</div>`
+        messageWrapper.innerHTML = `
+        <div class='message-content' >${message.content}</div>
+                                    `
+
     } else {
         messageWrapper.classList.add('message-other')
         messageWrapper.innerHTML = `<div class='name'> Nguyen Y Van</div>
@@ -87,5 +95,13 @@ view.addMessage = (message) => {
     document.querySelector('.list-message').appendChild(messageWrapper);
 
 
+}
+view.showCurrentConversation = () =>{
+    //document.querySelector('.list-message').innerHTML = ''
+    // console.log(model.currentConversation)
+    document.querySelector('.conversation-title').textContent = model.currentConversation.Title
+    for(const el of model.currentConversation.messages){
+        view.addMessage(el)
+    }
 }
 

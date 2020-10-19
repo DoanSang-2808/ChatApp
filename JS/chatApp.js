@@ -61,16 +61,16 @@ window.onload = () => { // gan cho su kien window.onload 1 function
 //     const docID = "aBkX6kNhmE1Boxs71to6"
 //     firebase.firestore().collection('Users').doc('docId').delete;
 // }
-// getDataFromDoc = (res) => {
-//     const data = res.data()
-//     data.id = res.id
-//     return data
-// }
-// getDataFromDocs = (docs) => {
-//     // const arr = []
-//     // for( const oneDoc of docs){
-//     //     arr.push(getDataFromDoc(oneDoc))
-//     // }
-//     //return arr
-//     return docs.map(getDataFromDoc)
-//}
+getDataFromDoc = (res) => {
+    const data = res.data()
+    data.id = res.id
+    return data
+}
+getDataFromDocs = (docs) => {
+    // const arr = []
+    // for( const oneDoc of docs){
+    //     arr.push(getDataFromDoc(oneDoc))
+    // }
+    //return arr
+    return docs.map(getDataFromDoc)
+}
