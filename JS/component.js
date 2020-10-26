@@ -59,6 +59,15 @@ conponent.loginPage = ` <div class="login-container"  >
 conponent.chatMain = `<div class="chat-container">
 <div class="header">MindX Chat</div>
 <div class="main">
+    <div class="aside-left">
+                <div class="creat-conversation">
+                    <button class='btn cursor-pointer' id='createChat'>+ New Conversation</button>
+                </div>
+                <div class="list-conversation">
+                    
+                </div>
+
+            </div>
     <div class="conversation-detail">
         <div class="conversation-title"> First conversation</div>
         <div class="list-message">
@@ -72,3 +81,24 @@ conponent.chatMain = `<div class="chat-container">
     </div>
 </div>
 </div>`
+
+conponent.CreateChat =`<div class="chat-container">
+<div class="header">MindX Chat</div>
+<div class="main-create-conversation">
+    <div class="create-conversation-detail">
+      <div class="create-conversation-title">Create a new conversation</div>
+      <form id='create'>
+        <div>
+        <input type="text" name="conversationName" placeholder="Conversation name">
+        </div>
+        <div>
+        <input type="text" name="friendEmail" placeholder="Friend email">
+        </div>
+        <div class="create-conversation-submit">
+          <button type='submit' class="btn">Save</button>
+          <button  type ='button' class="btn btn-cancer">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>`

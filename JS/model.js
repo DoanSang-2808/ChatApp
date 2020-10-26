@@ -39,7 +39,7 @@ model.addMessageToFirebase = (message) => {
     const dataUpdate = {
         messages: firebase.firestore.FieldValue.arrayUnion(message)
     }
-    const docId = 'L4rIfkSC7Ty69wLtfa7H'
+    const docId = model.currentConversation.id
     firebase.firestore().collection('conversations').doc(docId).update(dataUpdate)
 }
 model.getConversations = async () => {
@@ -48,6 +48,8 @@ model.getConversations = async () => {
     if (model.Conversations.length > 0) {
         model.currentConversation = model.Conversations[0]
         view.showCurrentConversation()
+        view.showListConversation()
+
     }
 
 }
@@ -67,13 +69,23 @@ model.ListenConversationChange = () => {
                         model.Conversations[i] = dataChange
                     }
                 }
-                if(dataChange.id = model.currentConversation.id){
+                if (dataChange.id = model.currentConversation.id) {
                     model.currentConversation = dataChange
-                    //view.showCurrentConversation()
-                    view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length-1])
+                    view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length - 1])
+                    view.ScrollToElement()
                 }
+               
             }
         }
 
     })
+}
+model.createConversation = async(conversation)  => {
+    // const createConversation = {
+    //     conversations : firebase.firestore.FieldValue.arrayUnion(conversation)
+    // }
+    // const docId = model.currentConversation.id
+    // firebase.firestore().collection('conversations').doc(docId).update(dataUpdate)
+    await firebase.firestore().collection("conversations").add(conversation);
+    view.setActiveScreen('chatMain')
 }

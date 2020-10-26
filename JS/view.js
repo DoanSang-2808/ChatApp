@@ -52,7 +52,7 @@ view.setActiveScreen = (screenName) => {
                 const messageSend = {
                     owner: model.currentUser.email,
                     content: message,
-                    createAt : new Date().toISOString()
+                    createAt: new Date().toISOString()
                 }
                 // const messageReply = {
                 //     onwer: 'Nguyen Y Van',
@@ -69,6 +69,34 @@ view.setActiveScreen = (screenName) => {
             model.getConversations()
             //lang nghe thay doi cua cac cuoc hoi thoai
             model.ListenConversationChange()
+
+            const createChat = document.querySelector('#createChat')
+            createChat.addEventListener('click', () => {
+                view.setActiveScreen('CreateChat')
+            })
+            break;
+        case 'CreateChat' :
+            document.getElementById('app').innerHTML = conponent.CreateChat;
+            const cancer = document.querySelector('.btn-cancer');
+            // cancer.addEventListener('click', () => {
+            //     view.setActiveScreen('chatMain')
+            // })
+            const createChats = document.getElementById('create');
+            createChats.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+                const conversationNew = {
+                    conversationName : createChats.conversationName.value,
+                    friendEmail : createChats.friendEmail.value,
+                } 
+                const conversation = {
+                    Title : conversationNew.conversationName,
+                    createAt : new Date().toISOString(),
+                    messages : [],
+                    users : [model.currentUser.email, conversationNew.friendEmail]
+                }
+                model.createConversation(conversation);
+                
+            })
             break;
     }
 }
@@ -87,7 +115,7 @@ view.addMessage = (message) => {
 
     } else {
         messageWrapper.classList.add('message-other')
-        messageWrapper.innerHTML = `<div class='name'> Nguyen Y Van</div>
+        messageWrapper.innerHTML = `<div class='name'>${message.owner} </div>
                                    <div class='message-content'>${message.content}</div>`
 
 
@@ -96,12 +124,49 @@ view.addMessage = (message) => {
 
 
 }
-view.showCurrentConversation = () =>{
-    //document.querySelector('.list-message').innerHTML = ''
+view.showCurrentConversation = () => {
+    document.querySelector('.list-message').innerHTML = ''
     // console.log(model.currentConversation)
     document.querySelector('.conversation-title').textContent = model.currentConversation.Title
-    for(const el of model.currentConversation.messages){
+    for (const el of model.currentConversation.messages) {
         view.addMessage(el)
+        view.ScrollToElement();
     }
 }
+view.showListConversation = () => {
+    console.log(model.Conversations)
+    for (const el of model.Conversations) {
+        view.addConversation(el)
+        
+
+    }
+}
+view.addConversation = (conversation) => {
+    const conversationWrapper = document.createElement('div');
+    conversationWrapper.classList.add("conversation");
+    if (conversation.id === model.currentConversation.id) {
+        conversationWrapper.classList.add("current");
+    }
+    conversationWrapper.innerHTML = `<div class="left-conversation">${conversation.Title}</div>
+    <div class="number-user">${conversation.users.length} users</div>`
+
+    document.querySelector('.list-conversation').appendChild(conversationWrapper);
+    conversationWrapper.addEventListener("click", () => {
+        const current= document.querySelector('.current')
+        current.classList.remove("current");
+        conversationWrapper.classList.add('current');
+        for(const conver of model.Conversations){
+            if(conversation.id === conver.id){
+                model.currentConversation = conver;
+                view.showCurrentConversation()
+            }
+        }
+    })
+}
+view.ScrollToElement = () => {
+    const elm = document.querySelector('.list-message');
+    elm.scrollTop = elm.scrollHeight
+}
+
+
 

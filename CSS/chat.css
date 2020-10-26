@@ -1,7 +1,7 @@
 .header{
     text-align: center;
-    color: #ffff;
-    background-color: #037BFE;
+    color: rgb(199, 204, 191);
+    background-color: #945bdf;
     height: 64px;
     line-height: 64px;
     /* display: flex; dùng khi thứ cần căn là các thẻ div
@@ -53,9 +53,11 @@
 }
 .chat-container .main{
     height: calc(100vh - 64px);
+    display: flex;
 }
 .chat-container .conversation-detail{
     height: 100%;
+    width: 85%;
 }
 .list-message .message .message-content{
     background-color: #dbdbdb;
@@ -74,10 +76,71 @@
     overflow: auto;
 }
 .list-message .message.message-mine .message-content{
-    background-color: #037BFE;
+    background-color: #dd79e0;
     color: #ffff;
 }
 .list-message .message .name{
     font-size: 13px;
 }
+.chat-container .aside-left{
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #dbdbdb;
+    
+}
+.chat-container .aside-left .creat-conversation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    border-bottom: 2px solid #dbdbdb;
+    
+}
+.chat-container .aside-left .conversation{
+    padding: 10px;
+    border-bottom: 1px solid #dbdbdb ;
+    cursor: pointer;
+}
+.chat-container .aside-left .current{
+    background-color: #dbdbdb;
+}
+.chat-container .aside-left .left-conversation {
+    font-weight: 900;
+}
+
+
+/* styte trang tao cuoc tro chuyen */
+.create-conversation-container .header{
+    color: #fff;
+    background: #037BFE;
+    text-align: center;
+    height: 64px;
+    line-height: 64px;
+    font-size: 24px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  }
+  .btn-cancer{
+    background-color: white !important;
+    color: black !important;
+  }
+  .create-conversation-detail{
+   margin-top: 50px;
+  }
+  .main-create-conversation{
+    display: flex;
+    justify-content: center;
+  }
+  .create-conversation-detail input{
+    width: 800px;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+    border: 1px solid gray;
+  }
+  .create-conversation-title{
+    margin-bottom: 15px;
+  }
 

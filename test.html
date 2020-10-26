@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,44 @@
     <link rel="stylesheet" href="./CSS/chat.css">
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
-<body >
+
+<body>
     <div class="chat-container">
         <div class="header">MindX Chat</div>
-        <div class="main">
+        <div class="main-create-conversation">
+            <div class="create-conversation-detail">
+              <div class="create-conversation-title">Create a new conversation</div>
+              <form>
+                <div>
+                <input type="text" name="conversationName" placeholder="Conversation name">
+                </div>
+                <div>
+                <input type="text" name="friendEmail" placeholder="Friend email">
+                </div>
+                <div class="create-conversation-submit">
+                  <button class="btn">Save</button>
+                  <button class="btn btn-cancer">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        <!-- <div class="main">
+            <div class="aside-left">
+                <div class="creat-conversation">
+                    <button class='btn cursor-pointer'>+ New Conversation</button>
+                </div>
+                <div class="list-conversation">
+                    <div class="conversation">
+                        <div class="left-conversation">My Love</div>
+                        <div class="number-user">2 users</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="left-conversation">Second Coversation</div>
+                        <div class="number-user">2 users</div>
+                    </div>
+                </div>
+
+            </div>
             <div class="conversation-detail">
                 <div class="conversation-title"> First conversation</div>
                 <div class="list-message">
@@ -24,11 +59,12 @@
                 </div>
                 <form id="send-message-form">
                     <input type="text" name="message" id="" placeholder="type a message">
-                    
+
                     <button class="btn">Send</button>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
 </body>
+
 </html>
