@@ -15,7 +15,7 @@
     line-height: 64px;
     border-bottom: 2px solid  #bdbdbd;
     font-size: 24px;
-    width: 100vw;
+    /* width: 100vw; */
     /* position: relative; */
 }
 .chat-container .conversation-detail{
@@ -57,7 +57,7 @@
 }
 .chat-container .conversation-detail{
     height: 100%;
-    width: 85%;
+    width: 65%;
 }
 .list-message .message .message-content{
     background-color: #dbdbdb;
@@ -65,6 +65,7 @@
     border-radius: 8px;
     max-width: 45%;
     width: max-content;
+    word-break: break-all;
 }
 .list-message .message.message-mine{
     display: flex;
@@ -107,6 +108,26 @@
 .chat-container .aside-left .left-conversation {
     font-weight: 900;
 }
+.chat-container .aside-right{
+    width: 25%;
+    height: 100%;
+    border-left: 1px solid #dbdbdb;
+}
+.chat-container .aside-right .users{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+}
+.chat-container .aside-right .add-user .input-gmail{
+    display: block;
+    margin-bottom: 15px;
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    margin-left: 10px;
+
+}
+
 
 
 /* styte trang tao cuoc tro chuyen */

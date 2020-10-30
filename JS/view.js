@@ -1,5 +1,5 @@
 const view = {}
-view.setActiveScreen = (screenName) => {
+view.setActiveScreen = (screenName, fromCreate = false) => {
     switch (screenName) {
         case 'registerPage':
             document.getElementById('app').innerHTML = conponent.registerPage;
@@ -65,37 +65,56 @@ view.setActiveScreen = (screenName) => {
                     sendMessageForm.message.value = "";
                 }
             })
-            //lay các cuoc hoi thoai ve
-            model.getConversations()
+            if(!fromCreate){
+                model.getConversations()
             //lang nghe thay doi cua cac cuoc hoi thoai
-            model.ListenConversationChange()
+                model.ListenConversationChange()
+            } else {
+                view.showCurrentConversation()
+                view.showListConversation()
+            }
+            //lay các cuoc hoi thoai ve
+            // model.getConversations()
+            // //lang nghe thay doi cua cac cuoc hoi thoai
+            // model.ListenConversationChange()
 
             const createChat = document.querySelector('#createChat')
             createChat.addEventListener('click', () => {
                 view.setActiveScreen('CreateChat')
             })
+            const addUser = document.getElementById('add_user');
+            addUser.addEventListener('submit', (event) =>{
+                event.preventDefault();
+                const userNew = addUser.gmail_user.value
+                console.log(userNew)
+                controller.addUser(userNew);
+                addUser.gmail_user.value = ''
+            })
             break;
         case 'CreateChat' :
+
             document.getElementById('app').innerHTML = conponent.CreateChat;
             const cancer = document.querySelector('.btn-cancer');
-            // cancer.addEventListener('click', () => {
-            //     view.setActiveScreen('chatMain')
-            // })
+            cancer.addEventListener('click', () => {
+                view.setActiveScreen('chatMain', true)
+            })
             const createChats = document.getElementById('create');
             createChats.addEventListener('submit', (event) => {
                 event.preventDefault(); 
                 const conversationNew = {
-                    conversationName : createChats.conversationName.value,
-                    friendEmail : createChats.friendEmail.value,
+                    email : createChats.friendEmail.value,
+                    title: createChats.conversationName.value,
                 } 
-                const conversation = {
-                    Title : conversationNew.conversationName,
-                    createAt : new Date().toISOString(),
-                    messages : [],
-                    users : [model.currentUser.email, conversationNew.friendEmail]
-                }
-                model.createConversation(conversation);
-                
+                console.log(conversationNew)
+                controller.createConversation(conversationNew)
+                // const conversation = {
+                //     Title : conversationNew.conversationName,
+                //     createAt : new Date().toISOString(),
+                //     messages : [],
+                //     users : [model.currentUser.email, conversationNew.friendEmail]
+                // }
+                // model.createConversation(conversation);
+
             })
             break;
     }
@@ -126,12 +145,17 @@ view.addMessage = (message) => {
 }
 view.showCurrentConversation = () => {
     document.querySelector('.list-message').innerHTML = ''
+    document.querySelector('.users').innerHTML = ''
     // console.log(model.currentConversation)
     document.querySelector('.conversation-title').textContent = model.currentConversation.Title
     for (const el of model.currentConversation.messages) {
         view.addMessage(el)
         view.ScrollToElement();
     }
+    for( const user of model.currentConversation.users){
+        view.addUsersInConversation(user)
+    }
+
 }
 view.showListConversation = () => {
     console.log(model.Conversations)
@@ -167,6 +191,11 @@ view.ScrollToElement = () => {
     const elm = document.querySelector('.list-message');
     elm.scrollTop = elm.scrollHeight
 }
-
-
-
+view.addUsersInConversation = (user) => {
+    const usersWrapper = document.createElement('div');
+    usersWrapper.classList.add('users');
+    // usersWrapper.innerHTML =`<p>${model.currentConversation.users[0]}</p>
+    // <p>${model.currentConversation.users[1]}</p>`
+    usersWrapper.innerHTML =`<p>${user}</p>`
+    document.querySelector('.users').appendChild(usersWrapper);
+}

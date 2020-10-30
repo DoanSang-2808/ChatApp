@@ -53,3 +53,43 @@ controller.login = ({ email, password }) => {
         model.login(dataLogin);
     }
 }
+
+controller.createConversation = ({email,title}) => {
+    if(email === ''){
+        view.setErrorMassage("conversation-email-error", "Please input email")
+    }else if(!validateEmail(email) ){
+        view.setErrorMassage("conversation-email-error", "Invalidate Email")
+    }
+    else {
+        view.setErrorMassage("conversation-email-error", "")
+    }
+    // const messagesTitle = title === '' ? 'Please input email' : ''
+    // view.setErrorMassage("conversation-email-error", messagesTitle)
+    if(email !== '' && validateEmail(email) && title !== ''){
+        const conversation = {
+            Title : title,
+            createAt : new Date().toISOString(),
+            messages : [],
+            users : [model.currentUser.email, email]
+        }
+        model.createConversation(conversation);
+    }
+}
+
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+ controller.addUser  = (email) =>{
+     if(email === ''){
+        view.setErrorMassage("user-error", "Please input email")
+     }else if(!validateEmail(email) ){
+        view.setErrorMassage("user-error", "Invalidate Email")
+    }
+    else {
+        view.setErrorMassage("user-error", "")
+    }
+    if(email !== '' && validateEmail(email)){
+        model.addUser(email);
+    }
+}

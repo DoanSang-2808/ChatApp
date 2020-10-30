@@ -79,6 +79,18 @@ conponent.chatMain = `<div class="chat-container">
             <button class="btn">Send</button>
         </form>
     </div>
+    <div class="aside-right">
+                <div class="users">
+                   
+                </div>
+                <div class="add-user">
+                <form id = 'add_user'>
+                    <input type="text" placeholder="Gmail" name="gmail_user" class="input-gmail">
+                    <div id='user-error'></div>
+                    <button class="btn" style="margin-left: 10px;"> Add</button>
+                </div>
+                </form>
+    </div>
 </div>
 </div>`
 
@@ -93,6 +105,7 @@ conponent.CreateChat =`<div class="chat-container">
         </div>
         <div>
         <input type="text" name="friendEmail" placeholder="Friend email">
+        <div id="conversation-email-error"></div>
         </div>
         <div class="create-conversation-submit">
           <button type='submit' class="btn">Save</button>

@@ -75,17 +75,31 @@ model.ListenConversationChange = () => {
                     view.ScrollToElement()
                 }
                
+            } 
+            else if(el.type === 'added'){
+                const dataChange = getDataFromDoc(el.doc)
+                console.log(dataChange)
+                model.Conversations.push(dataChange)
+                view.addConversation(dataChange);
             }
         }
 
     })
 }
-model.createConversation = async(conversation)  => {
+model.createConversation = (conversation)  => {
     // const createConversation = {
     //     conversations : firebase.firestore.FieldValue.arrayUnion(conversation)
     // }
     // const docId = model.currentConversation.id
     // firebase.firestore().collection('conversations').doc(docId).update(dataUpdate)
-    await firebase.firestore().collection("conversations").add(conversation);
-    view.setActiveScreen('chatMain')
+    firebase.firestore().collection("conversations").add(conversation);
+    view.setActiveScreen('chatMain', true)
+}
+model.addUser = (email) =>{
+    const userNew = {
+        users : firebase.firestore.FieldValue.arrayUnion(email),
+    }
+    const docId = model.currentConversation.id
+    firebase.firestore().collection('conversations').doc(docId).update(userNew)
+    view.addUsersInConversation(email)
 }
